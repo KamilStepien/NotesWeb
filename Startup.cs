@@ -7,6 +7,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Notes.Contexts;
+using Notes.Models;
+using Notes.EntityFramework;
+
 
 namespace Notes
 {
@@ -25,7 +28,7 @@ namespace Notes
             services.AddDbContext<ApplicationDBContext>(options =>
             options.UseSqlServer(Configuration["Data:ConnectionString"]));
 
-
+            services.AddTransient<INoteRepository, EFNoteRepository>();
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

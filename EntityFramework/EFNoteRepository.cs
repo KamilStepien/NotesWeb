@@ -20,7 +20,7 @@ namespace Notes.EntityFramework
 
         public Note GetNote()
         {
-            throw new NotImplementedException();
+            return _context.Notes.Include(x=> x.Data).First();
         }
     }
 }
